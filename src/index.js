@@ -4,7 +4,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const bodyParser = require('body-parser');
 
-const usuarioRoutes = require('./routes/usuario.routes');
+//const usuarioRoutes = require('./routes/usuario.routes');
 
 
 //optional
@@ -32,8 +32,8 @@ app.locals.pool = pool;
 
 
 
-app.use('/api/usuarios', usuarioRoutes);
-
+app.use('/api/usuarios', require('./routes/usuario.routes'));
+app.use('/api/pacientes', require('./routes/paciente.routes'));
 
 
 
