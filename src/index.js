@@ -31,11 +31,10 @@ app.locals.pool = pool;
 
 
 
-
 app.use('/api/usuarios', require('./routes/usuario.routes'));
 app.use('/api/pacientes', require('./routes/paciente.routes'));
-
-
+app.use('/api/sedes', require('./routes/sede.routes'));
+app.use('/api/odontologos', require('./routes/odontologo.routes'));
 
 
 app.listen(PORT, () => {
