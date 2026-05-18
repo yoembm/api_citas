@@ -36,6 +36,7 @@ app.use('/api/pacientes', require('./routes/paciente.routes'));
 app.use('/api/sedes', require('./routes/sede.routes'));
 app.use('/api/odontologos', require('./routes/odontologo.routes'));
 app.use('/api/historial', require('./routes/historial.routes'));
+app.use('/api/horarios', require('./routes/horario.routes'));
 
 
 app.listen(PORT, () => {
