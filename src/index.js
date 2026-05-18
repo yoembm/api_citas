@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Kemela0810',
+    host: 'mydbaws.c3uccy9zqpar.us-east-1.rds.amazonaws.com',
+    user: 'usuario',
+    password: 'contrabd$',
     database: 'citasbd',
     port: 3306
 });
