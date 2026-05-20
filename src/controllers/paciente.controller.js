@@ -47,7 +47,67 @@ const updatePaciente = async (req, res) => {
 
 };
 
+const getAllPacientes = async (req, res) => {
+    try {
+        const pool = req.app.locals.pool;
+
+        const pacientes =
+        await pacienteModel.getAllPacientes(pool);
+
+        res.json(pacientes);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error:'Error al obtener pacientes'
+        });
+
+    }
+};
+
+const deletePaciente=async(req,res)=>{
+
+    try{
+
+        const pool=req.app.locals.pool;
+
+        const id=req.params.id;
+
+        const result=
+        await pacienteModel.deletePaciente(
+            pool,
+            id
+        );
+
+        if(result.affectedRows===0){
+
+            return res.status(404).json({
+                message:'Paciente no encontrado'
+            });
+
+        }
+
+        res.json({
+            message:'Paciente eliminado'
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        res.status(500).json({
+            error:'Error al eliminar paciente'
+        });
+
+    }
+
+};
+
 module.exports = {
     getPacienteById,
-    updatePaciente
+    getAllPacientes,
+    updatePaciente,
+    deletePaciente
 };
