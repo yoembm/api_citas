@@ -67,37 +67,6 @@ const getAllPacientes = async (req, res) => {
     }
 };
 
-const createPaciente = async (req,res)=>{
-
-    try{
-
-        const pool=req.app.locals.pool;
-
-        const paciente=req.body;
-
-        const result=
-        await pacienteModel.createPaciente(
-            pool,
-            paciente
-        );
-
-        res.status(201).json({
-            message:'Paciente creado',
-            id:result.insertId
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        res.status(500).json({
-            error:'Error al registrar paciente'
-        });
-
-    }
-
-};
-
 const deletePaciente=async(req,res)=>{
 
     try{
@@ -139,7 +108,6 @@ const deletePaciente=async(req,res)=>{
 module.exports = {
     getPacienteById,
     getAllPacientes,
-    createPaciente,
     updatePaciente,
     deletePaciente
 };

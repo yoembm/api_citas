@@ -71,46 +71,6 @@ const getAllPacientes = async (pool) => {
 };
 
 
-const createPaciente = async (pool, paciente) => {
-  const [resultUsuario] = await pool.query(
-    `
-    INSERT INTO usuario
-    (nombres, apellidos, correo, password, telefono, rol, estado)
-    VALUES (?, ?, ?, ?, ?, 'paciente', 'activo')
-    `,
-    [
-      paciente.nombres,
-      paciente.apellidos,
-      paciente.correo,
-      paciente.password,
-      paciente.telefono
-    ]
-  );
-
-  const idUsuario = resultUsuario.insertId;
-
-  const [resultPaciente] = await pool.query(
-    `
-    INSERT INTO paciente
-    (id_usuario, dni, fecha_nacimiento, seguro, direccion, sexo, peso, talla)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `,
-    [
-      idUsuario,
-      paciente.dni,
-      paciente.fecha_nacimiento,
-      paciente.seguro,
-      paciente.direccion,
-      paciente.sexo,
-      paciente.peso,
-      paciente.talla
-    ]
-  );
-
-  return resultPaciente;
-};
-
-
 const deletePaciente = async (pool, id) => {
   const [result] = await pool.query(
     `
@@ -130,7 +90,6 @@ const deletePaciente = async (pool, id) => {
 module.exports = {
   getPacienteById,
   getAllPacientes,
-  createPaciente,
   updatePaciente,
   deletePaciente
 };
