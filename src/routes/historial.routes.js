@@ -8,7 +8,6 @@ const {
 
 const router = express.Router();
 
-//router.get('/:id', getHistorialByPacienteId);
 router.get('/:id',getHistorialByPacienteId);
 router.get('/', getAllHistoriales);
 router.post('/', createHistorial);

@@ -69,6 +69,9 @@ const getHistorialByPacienteId = async (
     INNER JOIN odontologo o ON c.id_odontologo = o.id_odontologo
     INNER JOIN usuario uo ON o.id_usuario = uo.id_usuario
     INNER JOIN sede s ON c.id_sede = s.id_sede
+
+    WHERE h.id_paciente = ?
+
     ORDER BY h.fecha_registro DESC
     `,
     [id]
