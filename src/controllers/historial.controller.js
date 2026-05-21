@@ -49,9 +49,29 @@ const getHistorialByPacienteId = async (req, res) => {
 
 };
 
+//Inicio - Nueva Funcion
+const getAllHistoriales = async (req, res) => {
+ try {
+    const pool = req.app.locals.pool;
+
+    const historiales = 
+    await historialModel.getAllHistoriales(pool);
+
+    res.json(historiales);
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: 'Error al obtener historiales',
+    });
+  }
+};
+// Fin - Nueva Funcion
 
 
 module.exports = {
     getHistorialByPacienteId,
-    createHistorial
+    createHistorial,
+    getAllHistoriales
 };

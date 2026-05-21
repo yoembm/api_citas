@@ -19,5 +19,13 @@
   "devDependencies": {
     "body-parser": "^2.2.2",
     "nodemon": "^3.1.14"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoembm/api_citas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yoembm/api_citas/issues"
+  },
+  "homepage": "https://github.com/yoembm/api_citas#readme"
 }
