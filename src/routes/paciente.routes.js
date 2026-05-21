@@ -7,7 +7,6 @@ const {
     deletePaciente
 } = require('../controllers/paciente.controller');
 
-A
 const router = express.Router();
 
 router.get('/', getAllPacientes);
