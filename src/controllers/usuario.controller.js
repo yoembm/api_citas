@@ -67,8 +67,31 @@ const getUsuarioById = async (req, res) => {
 
 };
 
+const getUsuarioByCorreo = async (req, res) => {
+
+    try {
+        const pool = req.app.locals.pool;
+        const correo = req.params.correo;
+        const password = req.params.password;
+
+        const usuario = await usuarioModel.getUsuarioByCorreo(pool, correo,password);
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario not found' });
+        }
+
+        res.json(usuario);
+
+    } catch (error) {
+        console.error('Error al obtener usuario por correo:', error);
+        res.status(500).json({ error: 'Error al obtener usuario por correo' });
+    }
+
+};
+
 module.exports = {
     listarUsuarios,
     crearUsuario,
-    getUsuarioById
+    getUsuarioById,
+    getUsuarioByCorreo
 };
