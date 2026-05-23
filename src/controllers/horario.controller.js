@@ -1,6 +1,6 @@
 
 const horarioModel = require("../models/horario.model");
-
+const citaModel = require("../models/cita.model");
 
 const createHorario = async (req, res) => {
 
@@ -46,6 +46,8 @@ const getHorarios = async (req, res) => {
 
 };
 
+
+
 const generarHoras = (horaInicio, horaFin, horasOcupadas) => {
 
     const horas = [];
@@ -80,14 +82,17 @@ const getHorarioByOdontologoId = async (req, res) => {
             return res.status(404).json({ message: 'Horario not found' });
         }
 
-        const horasOcupadas = ['08:00','10:00']; // Ejemplo de horas ocupadas, esto debería venir de la base de datos
+        const horasOcupadas = await citaModel.getCitasOcupadasOdontologoFecha(pool, id, date);
 
-        horario.horas_disponibles = generarHoras(
-            horario.hora_inicio,
-            horario.hora_fin,horasOcupadas
-        );
-        
-        res.json(horario);
+        console.log('Horas ocupadas:', horasOcupadas);
+
+        //horario.horas_disponibles = generarHoras(horario.hora_inicio, horario.hora_fin, horasOcupadas);
+
+
+        const horas_disponibles = generarHoras(horario.hora_inicio, horario.hora_fin, horasOcupadas);
+
+        console.log('Horas disponibles:', horas_disponibles);
+        res.json(horas_disponibles);
 
 
     } catch (error) {

@@ -1,6 +1,21 @@
 
 const odontologoModel = require("../models/odontologo.model");
 
+const getOdontologos = async (req, res) => {
+
+    try {
+
+        const pool = req.app.locals.pool;
+
+        const odontologos = await odontologoModel.getOdontologos(pool);
+
+        res.json(odontologos);
+    } catch (error) {
+        console.error('Error al listar odontologos:', error);
+        res.status(500).json({ error: 'Error al listar odontologos' });
+    }
+
+}   
 
 const getOdontologoById = async (req, res) => {
     
@@ -49,5 +64,6 @@ const updateOdontologo = async (req, res) => {
 
 module.exports = {
     getOdontologoById,
-    updateOdontologo
+    updateOdontologo,
+    getOdontologos
 };

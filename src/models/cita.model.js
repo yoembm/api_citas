@@ -41,10 +41,29 @@ const getCitasByPacienteId = async (
         [id]
     );
 
+
+
     return rows;
 };
 
+const getCitasOcupadasOdontologoFecha = async (
+    pool,
+    id,
+    fecha
+) => {
+    const [rows] = await pool.query(
+         `
+        SELECT TIME_FORMAT(hora, '%H:%i') AS hora
+        FROM cita_odontologica
+        WHERE id_odontologo = ?
+        AND fecha = ?
+        `,
+        [id, fecha]
+    );
 
+    return rows.map(row => row.hora);
+
+};
 
 const getCitasByOdontologoId = async (
     pool,
@@ -84,12 +103,12 @@ const updateCita = async (
 };
 
 module.exports = {
-    
+
     createCita,
     getCitas,
     getCitasByPacienteId,
     getCitasByOdontologoId,
-    updateCita
+    updateCita,
+    getCitasOcupadasOdontologoFecha
 };
 
-            

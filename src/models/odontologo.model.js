@@ -1,10 +1,17 @@
+const getOdontologos = async (pool) => {
+
+    const [rows] = await pool.query('SELECT * FROM odontologo o inner join usuario u on o.id_usuario = u.id_usuario');
+
+    return rows;
+
+};
 
 const getOdontologoById = async (
   pool,
   id
 ) => {
   const [rows] = await pool.query(
-    'SELECT * FROM odontologo WHERE id_odontologo = ?',
+    'SELECT * FROM odontologo o inner join usuario u on o.id_usuario = u.id_usuario WHERE o.id_odontologo = ?',
     [id]
   );
 
@@ -39,7 +46,8 @@ const updateOdontologo = async (
 
 module.exports = {  
   getOdontologoById,
-  updateOdontologo
+  updateOdontologo,
+  getOdontologos
 };      
 
 
