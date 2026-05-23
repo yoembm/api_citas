@@ -26,7 +26,7 @@ const createCita = async (
 
 const getCitas = async (pool) => {
 
-    const [rows] = await pool.query('SELECT * FROM cita_odontologica');
+    const [rows] = await pool.query('SELECT c.*, u.nombres AS paciente_nombre,u.apellidos AS paciente_apellido, u2.nombres AS odontologo_nombre, u2.apellidos AS odontologo_apellido, s.* FROM cita_odontologica c inner join paciente p on c.id_paciente = p.id_paciente inner join usuario u on p.id_usuario = u.id_usuario inner join odontologo o on c.id_odontologo = o.id_odontologo inner join usuario u2 on o.id_usuario = u2.id_usuario inner join sede s on c.id_sede = s.id_sede');
     return rows;
 
 }
