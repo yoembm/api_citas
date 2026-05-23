@@ -67,10 +67,25 @@ const getUsuarioById = async (
 };
 
 
+const getUsuarioByCorreo = async (
+    pool,
+    correo,
+    password
+) => {
+    const [rows] = await pool.query(
+        'SELECT * FROM usuario WHERE correo = ? AND password = ?',
+        [correo, password]
+    );
+
+    return rows[0];
+};  
+
 module.exports = {
     getUsuarios,
     createUsuario,
-    getUsuarioById
+    getUsuarioById,
+    getUsuarioByCorreo
 };
+  
 
 
